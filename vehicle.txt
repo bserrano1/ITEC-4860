@@ -1,0 +1,13 @@
+{"id":1,"makeModel":"Hyndai","year":1987,"retailPrice":42350.39171044172}
+{"id":2,"makeModel":"Nissan","year":2014,"retailPrice":26115.045752534592}
+{"id":1,"makeModel":"Toyota","year":2015,"retailPrice":35681.781191648035}
+{"id":2,"makeModel":"Nissan","year":2000,"retailPrice":40553.69014710751}
+{"id":1,"makeModel":"Nissan","year":1986,"retailPrice":25698.700716604868}
+{"id":2,"makeModel":"Honda","year":1994,"retailPrice":29853.35421946125}
+{"id":1,"makeModel":"Honda","year":1992,"retailPrice":41232.84503136795}
+{"id":2,"makeModel":"Toyota","year":1993,"retailPrice":22780.925700358646}
+{"id":1,"makeModel":"Dodge","year":2009,"retailPrice":20558.810914043956}
+{"id":2,"makeModel":"Honda","year":2012,"retailPrice":36693.57668849524}
+{"id":1,"makeModel":"Toyota","year":1994,"retailPrice":36817.00307653152}
+{"id":2,"makeModel":"Dodge","year":2011,"retailPrice":31732.777646325758}
+{"id":3,"makeModel":"Hyndai","year":1987,"retailPrice":25652.245083057678}
