@@ -1,4 +1,4 @@
-package com.vehiclerestapi;
+package com.restapi;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -29,11 +29,13 @@ public class MyTask {
 
     @Scheduled(cron = "*/4 * * * * *")
     public void deleteVehicle() {
-        String urlFull = url + "deleteVehicle/" + new Random().nextInt(100);
+        int ran = new Random().nextInt(20);
+        String urlFull = url + "deleteVehicle/" + ran;
         restTemplate.delete(urlFull);
+        System.out.println("Deleted ID: " + ran);
     }
 
-    @Scheduled(cron="*/4 * * * * *")
+    @Scheduled(cron="*/5 * * * * *")
     public void updateVehicle() {
         String urlFull = url + "updateVehicle";
         String [] makeModel = {"Honda", "Ford", "Toyota", "Hyndai", "Dodge", "Nissan"};
@@ -41,7 +43,8 @@ public class MyTask {
         int year = new Random().nextInt(2016 - 1986) + 1986;
         double retailPrice = ThreadLocalRandom.current().nextDouble(15000, 45000);
 
-        Vehicle v = new Vehicle(new Random().nextInt(), makeModel[ranModel], year, retailPrice);
+        Vehicle v = new Vehicle(new Random().nextInt(100), makeModel[ranModel], year, retailPrice);
         restTemplate.put(urlFull, v);
+        System.out.println("Update Vehicle: " + v.toString());
     }
 }

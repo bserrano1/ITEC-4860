@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.vehicle</groupId>
-	<artifactId>vehiclerestapi</artifactId>
+	<artifactId>ITEC4860Project1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>vehiclerestapi</name>
-	<description>com.vehiclerestapi.Vehicle Rest Api</description>
+	<name>ITEC4860Project1</name>
+	<description>com.restapi.Vehicle Rest Api</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-package com.vehiclerestapi;
+package com.restapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,11 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class VehicleController {
     private ObjectMapper mapper = new ObjectMapper();
 
-    public LineIterator iterator() throws IOException {
-        LineIterator it = FileUtils.lineIterator(new File("./vehicle.txt"), "UTF-8");
-        return it;
-    }
-
     @RequestMapping(value = "/addVehicle", method = RequestMethod.POST)
     public Vehicle addVehicle(@RequestBody Vehicle newVehicle) throws IOException {
         //Create a FileWriter to write to vehicle.txt and APPEND mode is true
@@ -48,8 +43,9 @@ public class VehicleController {
     @RequestMapping(value = "/getVehicle/{id}", method = RequestMethod.GET)
     public Vehicle getVehicle(@PathVariable("id") int id) throws IOException {
         String v = "";
-        while (iterator().hasNext()) {
-            String line = iterator().next();
+        LineIterator it = FileUtils.lineIterator(new File("./vehicle.txt"), "UTF-8");
+        while (it.hasNext()) {
+            String line = it.next();
             Vehicle current = mapper.readValue(line, Vehicle.class);
             if (current.getId() == id) {
                 v = line;
@@ -61,14 +57,17 @@ public class VehicleController {
     @RequestMapping(value = "/updateVehicle", method = RequestMethod.PUT)
     public Vehicle updateVehicle(@RequestBody Vehicle newVehicle) throws IOException {
         ArrayList<String> listUpdate = new ArrayList<>();
-        while (iterator().hasNext()) {
-            String d = iterator().next();
-            Vehicle current = mapper.readValue(d, Vehicle.class);
-            if (current.getId() == newVehicle.getId()) {
-                d = mapper.writeValueAsString(newVehicle);
+        LineIterator it = FileUtils.lineIterator(new File("./vehicle.txt"), "UTF-8");
+
+            while (it.hasNext()) {
+                String d = it.next();
+                Vehicle current = mapper.readValue(d, Vehicle.class);
+                if (current.getId() == newVehicle.getId()) {
+                    d = mapper.writeValueAsString(newVehicle);
+                }
+                listUpdate.add(d);
             }
-            listUpdate.add(d);
-        }
+
         FileUtils.writeLines(new File("./vehicle.txt"), listUpdate);
         return newVehicle;
     }
@@ -79,14 +78,17 @@ public class VehicleController {
         ResponseEntity<String> responseEntity = new ResponseEntity<>("ID not found.", headers, HttpStatus.NOT_FOUND);
 
         ArrayList<String> listUpdate = new ArrayList<>();
-        while (iterator().hasNext()) {
-            String d = iterator().next();
-            Vehicle current = mapper.readValue(d, Vehicle.class);
-            if (current.getId() == id) {
-                responseEntity = new ResponseEntity<>("ID Deleted.", headers, HttpStatus.FOUND);
+        LineIterator it = FileUtils.lineIterator(new File("./vehicle.txt"), "UTF-8");
+
+            while (it.hasNext()) {
+                String d = it.next();
+                Vehicle current = mapper.readValue(d, Vehicle.class);
+                if (current.getId() == id) {
+                    //System.out.println("Delete ID::" + d);
+                    responseEntity = new ResponseEntity<>("ID Deleted.", headers, HttpStatus.FOUND);
+                }
+                listUpdate.add(d);
             }
-            listUpdate.add(d);
-        }
         FileUtils.writeLines(new File("./vehicle.txt"), listUpdate);
         return responseEntity;
     }

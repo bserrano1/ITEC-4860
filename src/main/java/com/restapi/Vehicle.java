@@ -1,4 +1,4 @@
-package com.vehiclerestapi;
+package com.restapi;
 
 public class Vehicle {
 
@@ -19,7 +19,7 @@ public class Vehicle {
 
     public String toString()
     {
-        return this.getId() + ", " + this.makeModel + ", Year: " + this.year + ", Price: " + this.retailPrice;
+        return this.getId() + ", " + this.makeModel + ", Year: " + this.year + ", Price: $" + Math.round(this.retailPrice * 100)/100.0;
     }
 
     public int getId() {

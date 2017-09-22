@@ -6,10 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ITEC4860Project1" />
+        <module name="Itec4860Project1" />
         <module name="vehiclerestapi" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ITEC4860Project1" target="1.8" />
+      <module name="Itec4860Project1" target="1.8" />
       <module name="vehiclerestapi" target="1.8" />
     </bytecodeTargetLevel>
   </component>
